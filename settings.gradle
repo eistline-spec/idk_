@@ -1,52 +1,9 @@
-package com.example.spawnerhighlight;
-
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import net.fabricmc.loader.api.FabricLoader;
-
-import java.io.IOException;
-import java.io.Reader;
-import java.io.Writer;
-import java.nio.file.Files;
-import java.nio.file.Path;
-
-public class SpawnerHighlightConfig {
-
-    private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
-    private static final Path CONFIG_PATH = FabricLoader.getInstance()
-            .getConfigDir().resolve("spawnerhighlight.json");
-
-    // The single setting: is the highlight enabled?
-    public boolean enabled = true;
-
-    private static SpawnerHighlightConfig instance;
-
-    public static SpawnerHighlightConfig getInstance() {
-        if (instance == null) {
-            instance = load();
-        }
-        return instance;
-    }
-
-    public static SpawnerHighlightConfig load() {
-        if (Files.exists(CONFIG_PATH)) {
-            try (Reader reader = Files.newBufferedReader(CONFIG_PATH)) {
-                instance = GSON.fromJson(reader, SpawnerHighlightConfig.class);
-                return instance;
-            } catch (IOException e) {
-                SpawnerHighlight.LOGGER.warn("[SpawnerHighlight] Failed to load config, using defaults.", e);
-            }
-        }
-        instance = new SpawnerHighlightConfig();
-        instance.save();
-        return instance;
-    }
-
-    public void save() {
-        try (Writer writer = Files.newBufferedWriter(CONFIG_PATH)) {
-            GSON.toJson(this, writer);
-        } catch (IOException e) {
-            SpawnerHighlight.LOGGER.warn("[SpawnerHighlight] Failed to save config.", e);
-        }
+pluginManagement {
+    repositories {
+        maven { url = 'https://maven.fabricmc.net/' }
+        mavenCentral()
+        gradlePluginPortal()
     }
 }
+
+rootProject.name = 'spawnerhighlight'
