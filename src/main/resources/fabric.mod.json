@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "id": "spawnerhighlight",
+  "version": "1.1.0",
+  "name": "Spawner Highlight",
+  "description": "Highlights all mob spawner blocks within your render distance using red particle effects.",
+  "authors": ["eistline-spec"],
+  "license": "MIT",
+  "environment": "client",
+  "entrypoints": {
+    "main":   ["com.example.spawnerhighlight.SpawnerHighlight"],
+    "client": ["com.example.spawnerhighlight.SpawnerHighlightClient"]
+  },
+  "depends": {
+    "fabricloader": ">=0.15.0",
+    "fabric-api":   "*",
+    "minecraft":    "~1.21",
+    "java":         ">=21"
+  }
+}
