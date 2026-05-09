@@ -21,12 +21,11 @@ import org.lwjgl.glfw.GLFW;
 
 public class SpawnerHighlightClient implements ClientModInitializer {
 
-    private static final int PARTICLE_INTERVAL = 10;
+private static final int PARTICLE_INTERVAL = 10;
     private static final DustParticleEffect RED_DUST =
-            new DustParticleEffect(new Vector3f(1.0f, 0.0f, 0.0f), 1.3f);
+            new DustParticleEffect(new Vector3f(1.0f, 0.0f, 0.0f));
     private static KeyBinding menuKey;
     private int tickCounter = 0;
-
     @Override
     public void onInitializeClient() {
         SpawnerHighlightConfig.getInstance();
