@@ -21,24 +21,21 @@ import org.lwjgl.glfw.GLFW;
 
 public class SpawnerHighlightClient implements ClientModInitializer {
 
-private static final int PARTICLE_INTERVAL = 10;
+    private static final int PARTICLE_INTERVAL = 10;
     private static final DustParticleEffect RED_DUST =
-            new DustParticleEffect(new Vector3f(1.0f, 0.0f, 0.0f));
+            new DustParticleEffect(new Vector3f(1.0f, 0.0f, 0.0f), 1.3f);
     private static KeyBinding menuKey;
     private int tickCounter = 0;
+
     @Override
     public void onInitializeClient() {
         SpawnerHighlightConfig.getInstance();
-
-        // Keybind: H key
         menuKey = KeyBindingHelper.registerKeyBinding(new KeyBinding(
                 "key.spawnerhighlight.menu",
                 InputUtil.Type.KEYSYM,
                 GLFW.GLFW_KEY_H,
                 "category.spawnerhighlight"
         ));
-
-        // Register /activate_finder command
         ClientCommandRegistrationCallback.EVENT.register((dispatcher, registryAccess) -> {
             dispatcher.register(
                 ClientCommandManager.literal("activate_finder")
@@ -54,7 +51,6 @@ private static final int PARTICLE_INTERVAL = 10;
                     })
             );
         });
-
         ClientTickEvents.END_CLIENT_TICK.register(this::onClientTick);
     }
 
